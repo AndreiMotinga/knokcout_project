@@ -21,6 +21,8 @@ ko.components.register('name-editor', {
   }
 });
 
+ko.components.register('program-grid', { require: 'components/program-grid/program-grid' });
+
 // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 
 // Start the application

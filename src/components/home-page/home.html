@@ -1,5 +1,9 @@
-<h2>Home page</h2>
+<h2>Filtered Channels</h2>
 
-<p data-bind='text: message'></p>
+<program-grid params="onlyMyChannels: true"></program-grid>
+<p>filtered channels are here</p>
 
-<button data-bind='click: doSomething'>I'm the button</button>
+<h2>All Channels</h2>
+
+<program-grid params="onlyMyChannels: false"></program-grid>
+<p>all channels are here</p>

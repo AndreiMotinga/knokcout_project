@@ -19,7 +19,7 @@ var requireJsRuntimeConfig = vm.runInNewContext(fs.readFileSync('src/app/require
             'requireLib',
             'components/nav-bar/nav-bar',
             'components/home-page/home',
-            'text!components/about-page/about.html'
+            'components/program-grid/program-grid'
         ],
         insertRequire: ['app/startup'],
         bundles: {
@@ -27,6 +27,7 @@ var requireJsRuntimeConfig = vm.runInNewContext(fs.readFileSync('src/app/require
             // above, and group them into bundles here.
             // 'bundle-name': [ 'some/module', 'another/module' ],
             // 'another-bundle-name': [ 'yet-another-module' ]
+          'about': ['text!components/about-page/about.html']
         }
     }),
     transpilationConfig = {
@@ -64,7 +65,7 @@ gulp.task('js:optimize', ['js:babel'], function() {
     var config = objectAssign({}, requireJsOptimizerConfig, { baseUrl: 'temp' });
     return rjs(config)
         .pipe(uglify({ preserveComments: 'some' }))
-        .pipe(gulp.dest('./dist/'));    
+        .pipe(gulp.dest('./dist/'));
 })
 
 // Builds the distributable .js files by calling Babel then the r.js optimizer
@@ -106,7 +107,7 @@ gulp.task('serve:src', function() {
         root: transpilationConfig.root,
         middleware: function(connect, opt) {
             return [
-                 function (req, res, next) {                     
+                 function (req, res, next) {
                      var pathname = path.normalize(url.parse(req.url).pathname);
                      babelTranspile(pathname, function(err, result) {
                         if (err) {
