@@ -5,11 +5,11 @@ define(['components/home-page/home'], function(homePage) {
 
     it('should supply a friendly message which changes when acted upon', function() {
       var instance = new HomePageViewModel();
-      expect(instance.message()).toContain('Welcome to ');
+      expect(instance.message()).toContain("Initial message");
 
       // See the message change
       instance.doSomething();
-      expect(instance.message()).toContain('You invoked doSomething()');
+      expect(instance.message()).toContain("You've clicked me");
     });
 
   });
