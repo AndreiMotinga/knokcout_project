@@ -1,8 +1,13 @@
 <h1>TODO APP</h1>
 
-New item: <input type="text" data-bind="value: newTodo">
-<button data-bind="click: addTodo">Add</button>
+<form data-bind="submit: addTodo">
+  New item: <input type="text" data-bind="value: newTodo">
+  <button type="submit">Add</button>
+</form>
 
 <ul data-bind="foreach: todos">
-  <li data-bind="text: data"></li>
+  <li>
+    <span data-bind="text: text"></span>
+    <a href="#" data-bind="click: $parent.removeTodo">Remove</a>
+  </li>
 </ul>
