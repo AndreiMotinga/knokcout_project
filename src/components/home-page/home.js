@@ -1,17 +1,28 @@
 import ko from 'knockout';
 import homeTemplate from 'text!./home.html';
 
-class HomeVM {
-    constructor(route) {
-        this.message = ko.observable('Initial message');
-    }
+class Todo {
+  constructor(data) {
+    this.data = data;
+  }
+}
 
-    doSomething() {
-        const inital = "Initial message";
-        const updated = "You've clicked me";
-        const current = this.message();
-        (current == inital) ? this.message(updated) : this.message(inital);
+class HomeVM {
+  constructor(route) {
+    this.newTodo = ko.observable();
+
+    this.todos = ko.observableArray([
+        new Todo("buy milk"),
+        new Todo("build app"),
+    ]);
+
+    this.addTodo = function () {
+      const newTodoData = this.newTodo();
+      const newTodo = new Todo(newTodoData);
+      this.todos.push(newTodo);
+      this.newTodo('');
     }
+  }
 }
 
 export default { viewModel: HomeVM, template: homeTemplate };

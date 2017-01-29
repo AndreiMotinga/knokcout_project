@@ -1,9 +1,8 @@
-<h2>Filtered Channels</h2>
+<h1>TODO APP</h1>
 
-<program-grid params="onlyMyChannels: true"></program-grid>
-<p>filtered channels are here</p>
+New item: <input type="text" data-bind="value: newTodo">
+<button data-bind="click: addTodo">Add</button>
 
-<h2>All Channels</h2>
-
-<program-grid params="onlyMyChannels: false"></program-grid>
-<p>all channels are here</p>
+<ul data-bind="foreach: todos">
+  <li data-bind="text: data"></li>
+</ul>
