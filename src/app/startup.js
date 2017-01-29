@@ -13,14 +13,6 @@ ko.components.register('about-page', {
     template: { require: 'text!components/about-page/about.html' }
 });
 
-ko.components.register('name-editor', {
-  template: "<p>Enter your name: <input data-bind='value: name'></p>" +
-    "<span data-bind='text: name'></span> ",
-  viewModel: function () {
-    this.name = ko.observable('something');
-  }
-});
-
 ko.components.register('program-grid', { require: 'components/program-grid/program-grid' });
 
 // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
