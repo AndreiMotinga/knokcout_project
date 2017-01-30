@@ -17,13 +17,11 @@ class HomeVM {
     });
 
     // fix: is this the right place to define it?
-    this.todos = ko.observableArray([
-        new Todo("buy milk", false),
-        new Todo("build app", true),
-    ]);
+    this.todos = ko.observableArray([]);
 
     this.removeTodo = (todo) => {
       this.todos.remove(todo);
+      window.localStorage.setItem('ko-todos', JSON.stringify(this.todos()));
     };
 
     this.addTodo = () => {
@@ -31,6 +29,7 @@ class HomeVM {
       const newTodo = new Todo(text);
       this.todos.push(newTodo);
       this.newTodo('');
+      window.localStorage.setItem('ko-todos', JSON.stringify(this.todos()));
     }
 
     this.removeAll = () => {
@@ -43,8 +42,16 @@ class HomeVM {
 
     this.markAllCompleted  = () => {
       this.todos().forEach((v) => {
-        return v.completed(!v.completed());
+        return v.completed = true;
       });
+      window.localStorage.setItem('ko-todos', JSON.stringify(this.todos()));
+    }
+
+    // load todos from local storage
+    let koTodos = window.localStorage.getItem("ko-todos");
+    if(koTodos) {
+      let saved = JSON.parse(koTodos).map((v) => new Todo(v.text, v.completed));
+      this.todos(saved);
     }
   }
 }
