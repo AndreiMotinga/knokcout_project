@@ -7,7 +7,16 @@
 
 <ul data-bind="foreach: todos">
   <li>
-    <span data-bind="text: text"></span>
+    <span class="item" data-bind="text: text, css: { completed: completed() }"></span>
     <a href="#" data-bind="click: $parent.removeTodo">Remove</a>
+    <span> | </span>
+    <a href="#" data-bind="click: $parent.toggleCompleted">Toggle Completed</a>
   </li>
 </ul>
+
+<footer>
+  <ul>
+    <li><a href="#" data-bind="click: markAllCompleted">mark completed</a></li>
+    <li><a href="#" data-bind="click: removeAll">Remove all</a></li>
+  </ul>
+</footer>

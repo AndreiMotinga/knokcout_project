@@ -3,8 +3,9 @@ import homeTemplate from 'text!./home.html';
 
 // fix: extract to models folder
 class Todo {
-  constructor(text) {
+  constructor(text, state) {
     this.text = text;
+    this.completed = ko.observable(state);
   }
 }
 
@@ -17,8 +18,8 @@ class HomeVM {
 
     // fix: is this the right place to define it?
     this.todos = ko.observableArray([
-        new Todo("buy milk"),
-        new Todo("build app"),
+        new Todo("buy milk", false),
+        new Todo("build app", true),
     ]);
 
     this.removeTodo = (todo) => {
@@ -30,6 +31,20 @@ class HomeVM {
       const newTodo = new Todo(text);
       this.todos.push(newTodo);
       this.newTodo('');
+    }
+
+    this.removeAll = () => {
+      this.todos([]);
+    };
+
+    this.toggleCompleted = (todo) => {
+      return todo.completed(!todo.completed());
+    }
+
+    this.markAllCompleted  = () => {
+      this.todos().forEach((v) => {
+        return v.completed(!v.completed());
+      });
     }
   }
 }
